@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính diện tích hình chữ nhật</title>
+</head>
+<body>
+    <script>
+        function tinhDienTich() {
+            let chieuDai = prompt("Nhập chiều dài của hình chữ nhật:");
+            let chieuRong = prompt("Nhập chiều rộng của hình chữ nhật:");
+            
+            chieuDai = parseFloat(chieuDai);
+            chieuRong = parseFloat(chieuRong);
+            
+            if (isNaN(chieuDai) || isNaN(chieuRong)) {
+                alert("Vui lòng nhập vào các số hợp lệ.");
+                return;
+            }
+            
+            if (chieuDai <= 0 || chieuRong <= 0) {
+                alert("Chiều dài và chiều rộng phải là số dương.");
+                return;
+            }
+            
+            let dienTich = chieuDai * chieuRong;
+            alert("Diện tích hình chữ nhật là: " + dienTich);
+        }
+        
+        tinhDienTich();
+    </script>
+</body>
+</html>
