@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm số lần xuất hiện của từ</title>
+</head>
+<body>
+    <script>
+        function demSoLanXuatHien() {
+            let vanBan = prompt("Nhập đoạn văn bản:");
+            if (!vanBan) {
+                alert("Vui lòng nhập vào một đoạn văn bản.");
+                return;
+            }
+            
+            let tuArray = vanBan.toLowerCase().match(/\b\w+\b/g);
+            let tuDem = {};
+            
+            if (tuArray) {
+                tuArray.forEach(tu => {
+                    tuDem[tu] = (tuDem[tu] || 0) + 1;
+                });
+            }
+            
+            let ketQua = "Số lần xuất hiện của từng từ:\n";
+            for (let tu in tuDem) {
+                ketQua += `${tu}: ${tuDem[tu]}\n`;
+            }
+            
+            alert(ketQua);
+        }
+        
+        demSoLanXuatHien();
+    </script>
+</body>
+</html>
+
