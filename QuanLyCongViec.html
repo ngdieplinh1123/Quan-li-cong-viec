@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Công Việc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            background: rgb(245, 245, 245);
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Quản lý Công Việc</h2>
+    <input type="text" id="taskInput" placeholder="Nhập công việc...">
+    <button onclick="addTask()">Thêm</button>
+    <ul id="taskList"></ul>
+    
+    <script>
+        let tasks = [];
+
+        function renderTasks() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                taskList.innerHTML += `
+                    <li>
+                        ${task.name}
+                        <button onclick="editTask(${task.id})">Sửa</button>
+                        <button onclick="deleteTask(${task.id})">Xóa</button>
+                    </li>`;
+            });
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            if (taskInput.value.trim() === "") return;
+            const task = { id: Date.now(), name: taskInput.value };
+            tasks.push(task);
+            taskInput.value = "";
+            renderTasks();
+        }
+
+        function editTask(id) {
+            const newName = prompt("Nhập tên mới:");
+            const task = tasks.find(t => t.id === id);
+            if (task && newName) {
+                task.name = newName;
+                renderTasks();
+            }
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            renderTasks();
+        }
+    </script>
+</body>
+</html>
+
